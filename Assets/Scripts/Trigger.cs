@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Trigger : MonoBehaviour
 {
-    virtual protected void OnCollisionEnter(Collision collision)
+    virtual protected void OnTriggerEnter(Collider collision)
     {
         // Do something
     }

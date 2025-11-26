@@ -23,7 +23,8 @@ public class Bumper : MonoBehaviour
         if (collision.collider.gameObject.CompareTag("Pinball"))
         {
             Vector3 pos2 = collision.gameObject.transform.position;
-            collision.rigidbody.AddForce(/*TODO: Get the value of where the ball should bounce based on impact of collision??*/ pos - pos2 ,ForceMode.Impulse);
+            collision.rigidbody.AddForce(/*TODO: Get the value of where the ball should bounce based on impact of collision??*/ pos - pos2 * force ,ForceMode.Impulse);
+            //Do something with the score here
         }
     }
 }

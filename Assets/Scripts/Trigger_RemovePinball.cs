@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Trigger_RemovePinball : Trigger
 {
-    override protected void OnCollisionEnter(Collision collision)
+    override protected void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Pinball"))
         {
-            Zomball_GameManager.LoseLife();
             Destroy(collision.gameObject);
+            Zomball_GameManager.LoseLife();
         }
     }
 }
