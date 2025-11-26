@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Pinball_Game : MonoBehaviour
 {
+    static public Pinball_Game S;
+
     public bool isActive = true;
     [SerializeField] private GameObject launcher;
     [SerializeField] private GameObject plunger;
@@ -22,6 +24,7 @@ public class Pinball_Game : MonoBehaviour
     private bool flipperInputR = false;
 
     private Launcher launcherSpring;
+    private Plunger plungerSpring;
     
     private bool plungerPull = false;
 
@@ -31,6 +34,8 @@ public class Pinball_Game : MonoBehaviour
 
     private void Start()
     {
+        S = this;
+
         flipperHingeL = flipperLeft.GetComponent<HingeJoint>();
         flipperHingeR = flipperRight.GetComponent<HingeJoint>();
 
@@ -47,6 +52,7 @@ public class Pinball_Game : MonoBehaviour
         flipperHingeR.spring = flipperSpringR;
 
         launcherSpring = launcher.GetComponent<Launcher>();
+        plungerSpring = plunger.GetComponent<Plunger>();
 
         currPinball = GameObject.Find("Pinball");
         pinballRespawnPos = currPinball.transform.position;
@@ -61,20 +67,20 @@ public class Pinball_Game : MonoBehaviour
         //flipperInputL = Input.GetKeyDown(KeyCode.Mouse0) ? true : false;
 
         //flipperInputR = Input.GetKeyDown(KeyCode.Mouse1) ? true : false;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             flipperInputL = true;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.A))
         {
             flipperInputL = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             flipperInputR = true;
         }
-        if (Input.GetKeyUp(KeyCode.Mouse1))
+        if (Input.GetKeyUp(KeyCode.D))
         {
             flipperInputR = false;
         }
@@ -87,6 +93,7 @@ public class Pinball_Game : MonoBehaviour
         {
             plungerPull = false;
             launcherSpring.LetGo();
+            plungerSpring.LetGo();
         }
     }
 
@@ -118,6 +125,7 @@ public class Pinball_Game : MonoBehaviour
         if (plungerPull)
         {
             launcherSpring.Pull();
+            plungerSpring.Pull();
         }
     }
 

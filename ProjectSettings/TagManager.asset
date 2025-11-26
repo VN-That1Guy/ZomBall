@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LauncherStopPoint
   - Pinball
+  - Bumper
   layers:
   - Default
   - TransparentFX

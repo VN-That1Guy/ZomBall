@@ -32,6 +32,6 @@ PhysicsManager:
   m_GenerateOnTriggerStayEvents: 1
   m_SolverType: 0
   m_DefaultMaxAngularSpeed: 50
-  m_ScratchBufferChunkCount: 4
+  m_ScratchBufferChunkCount: 5
   m_CurrentBackendId: 4072204805
   m_FastMotionThreshold: 3.4028235e+38

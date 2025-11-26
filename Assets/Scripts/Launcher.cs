@@ -1,18 +1,17 @@
-using System.ComponentModel;
 using UnityEngine;
 
 public class Launcher : MonoBehaviour
 {
-    private Vector3 restPos;
-    private Vector3 launchPos;
+    protected Vector3 restPos;
+    protected Vector3 launchPos;
 
-    private float launcherPullPower = 0.25f;
-    private float launcherPower = 2000f;
-    private float letGoTime;
-    private float letGoCurrTime;
+    protected float launcherPullPower = 0.25f;
+    protected float launcherPower = 2000f;
+    protected float letGoTime;
+    protected float letGoCurrTime;
 
-    private bool reachMaxDist = false;
-    private bool letGo = false;
+    protected bool reachMaxDist = false;
+    protected bool letGo = false;
 
     private Rigidbody rb;
 
@@ -46,13 +45,13 @@ public class Launcher : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Pinball") && rb.linearVelocity.magnitude > 3)
-        {
-            collision.rigidbody.AddForce(this.rb.linearVelocity, ForceMode.VelocityChange);
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Pinball") && rb.linearVelocity.magnitude > 3)
+    //    {
+    //        collision.rigidbody.AddForce(this.rb.linearVelocity, ForceMode.VelocityChange);
+    //    }
+    //}
 
     void OnTriggerEnter(Collider other)
     {
@@ -70,14 +69,14 @@ public class Launcher : MonoBehaviour
         }
     }
 
-    public void Pull()
+    virtual public void Pull()
     {
         if (reachMaxDist) return;
 
         transform.Translate(0, (1 * Time.fixedDeltaTime) * launcherPullPower, 0, Space.Self);
     }
 
-    public void LetGo()
+    virtual public void LetGo()
     {
         //transform.Translate(0, (-1 * Time.deltaTime) * launcherPullPower, 0, Space.Self);
         letGo = true;
