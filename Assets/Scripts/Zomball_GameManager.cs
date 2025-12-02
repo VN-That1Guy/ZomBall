@@ -3,10 +3,13 @@ using UnityEngine;
 public class Zomball_GameManager : MonoBehaviour
 {
     static public Zomball_GameManager S;
-    static public int LIVES = 0;
 
-    [SerializeField] private int defaultLives = 5;
-    
+    [Header("Inscribed")]
+    [SerializeField] private int defaultLives = 5; // Lives system: used but not implemented
+
+    [Header("Dynamic")]
+    static public int LIVES = 0; // Lives system: used but not implemented
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
