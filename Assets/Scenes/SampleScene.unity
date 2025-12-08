@@ -2782,7 +2782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a23e2c85aeafa2a4a8c4e469158135ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <damage>k__BackingField: 15
+  <damage>k__BackingField: 10
   <ammoPerShot>k__BackingField: 0
   <bulletsPerShot>k__BackingField: 1
   <fireRate>k__BackingField: 0.1

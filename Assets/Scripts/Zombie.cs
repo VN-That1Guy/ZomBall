@@ -94,7 +94,7 @@ public class Zombie : MonoBehaviour, IDamageable
 
         if (isHeadGone) // Head is gone, forget about the target and walk around aimlessly
         {
-            destinationPoint = -(Random.insideUnitSphere * 2f);
+            destinationPoint =  agent.transform.position + -(Random.insideUnitSphere * 2f);
             destinationPoint.y = agent.transform.position.y;
         }
 
