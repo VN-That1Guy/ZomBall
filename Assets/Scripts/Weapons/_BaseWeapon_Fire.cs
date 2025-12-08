@@ -1,3 +1,5 @@
+using NUnit.Framework.Constraints;
+using System.Collections;
 using UnityEditor.Timeline;
 using UnityEngine;
 
@@ -17,6 +19,8 @@ public class Weapon_Fire : MonoBehaviour, IFire
     [SerializeField] protected Transform firingPoint; // Not used yet but will serve as a point where Bullet Tracers spawn from
 
     public LayerMask layerMask = 64;
+
+    [SerializeField] protected GameObject tracerPrefab;
 
     [Header("Dynamic")]
     [SerializeField] protected bool firing;
@@ -91,6 +95,9 @@ public class Weapon_Fire : MonoBehaviour, IFire
         Vector3 Spread = new(Random.Range(-spread, spread), Random.Range(-spread, spread));
         ray = player.cam.ScreenPointToRay(Input.mousePosition + Spread);
 
+        GameObject tracer = Instantiate<GameObject>(tracerPrefab, firingPoint.position, firingPoint.rotation);
+        tracer.transform.LookAt(ray.GetPoint(1000f));
+
         //Vector3 fwd = player.cam.transform.forward;
         //fwd += player.cam.transform.TransformDirection(new(Random.Range(-spread,spread), Random.Range(-spread,spread)));
         //fwd += player.aimPos;
@@ -99,13 +106,14 @@ public class Weapon_Fire : MonoBehaviour, IFire
         {
             if (hit.transform.TryGetComponent<IDamageable>(out IDamageable damageActor))
             {
+                tracer.transform.LookAt(hit.point);
+                BulletTracer bulletTracer = tracer.GetComponent<BulletTracer>();
+                bulletTracer.lifeTime = Vector3.Distance(firingPoint.position, hit.transform.position) / bulletTracer.speed;
                 Debug.Log("Hit! " + hit.transform.gameObject.name);
                 damageActor.Damage(damage, damageType);
             }
         }
     }
-
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

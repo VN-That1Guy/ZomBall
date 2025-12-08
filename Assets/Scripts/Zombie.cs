@@ -96,6 +96,9 @@ public class Zombie : MonoBehaviour, IDamageable
         {
             destinationPoint =  agent.transform.position + -(Random.insideUnitSphere * 2f);
             destinationPoint.y = agent.transform.position.y;
+            agent.SetDestination(destinationPoint);
+            Invoke(nameof(Think), 1f);
+            return;
         }
 
         agent.SetDestination(destinationPoint);

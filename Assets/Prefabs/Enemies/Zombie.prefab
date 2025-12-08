@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d93ad13f411a64686c82b363fb8f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <maxHealth>k__BackingField: 100
+  <maxHealth>k__BackingField: 150
   head: {fileID: 126437201560127461}
   speed: 1.5
   defaultMaxDotCount: 5

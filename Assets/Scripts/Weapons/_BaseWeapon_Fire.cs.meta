@@ -6,6 +6,7 @@ MonoImporter:
   defaultReferences:
   - <damageType>k__BackingField: {fileID: 11400000, guid: 1973b177bc257634088d065c8084408d, type: 2}
   - firingPoint: {instanceID: 0}
+  - tracerPrefab: {fileID: 8448148571304809487, guid: 7cc659d19e2439c47b054a8f6e5fc7f2, type: 3}
   - player: {instanceID: 0}
   - weapon: {instanceID: 0}
   executionOrder: 0
