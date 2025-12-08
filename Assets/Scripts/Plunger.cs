@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Plunger : Launcher
+public class Plunger : Launcher // This is just a copy of Launcher that only serves as a visual plunger from outside the pinball machine. The GameObject is named pulley but it's actually a plunger.
 {
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

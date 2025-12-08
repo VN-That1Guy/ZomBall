@@ -54,4 +54,24 @@ public class Utils : MonoBehaviour
 
         return mats;
     }
+
+    //== Bounds =======================================================\\
+    /// <summary>
+    /// Returns a random point from a specified bound
+    /// Note: this is a local point within the gameObject.
+    /// </summary>
+    /// <param name="bounds">The bounds that will be read and set a return value based on it's size</param>
+    /// <returns></returns>
+    static public Vector3 GetRandomPointInBounds(Bounds bounds)
+    {
+        float minX = bounds.size.x * -0.5f;
+        float minY = bounds.size.y * -0.5f;
+        float minZ = bounds.size.z * -0.5f;
+
+        return new Vector3(
+            Random.Range(minX,-minX), 
+            Random.Range(minY,-minY), 
+            Random.Range(minZ,-minZ)
+            );
+    }
 }

@@ -1,6 +1,8 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Hitpoint - Can be an extension of a living gameObject to act as a hitbox, or a standalone object that can be broken.
+// Uses include: Being a destructable prop in the background, a removable limb, a damage resistant hitpoint, and so on.
 public class HitPoint : MonoBehaviour, IDamageable
 {
     [Header("Inscribed")]
@@ -17,6 +19,7 @@ public class HitPoint : MonoBehaviour, IDamageable
     [Tooltip("Is this hitpoint or object of hitpoint removable?")]
     public bool isRemovable = true;
 
+    [Tooltip("Is this an object or simply a collider volume?")]
     public bool isObject = true;
 
     [Tooltip("If isObject = true, get the set hitParentObject to destroy later when this component detects that the health value is less than or equal to zero")]
@@ -27,7 +30,6 @@ public class HitPoint : MonoBehaviour, IDamageable
 
     private IDamageable parentDamageable;
 
-    //[SerializeField] private 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +40,7 @@ public class HitPoint : MonoBehaviour, IDamageable
         // If this is a hitpoint attached to a gameObject (Like a Zombie), get it's IDamageable component
         parentDamageable = gameObject.transform.root.gameObject.GetComponent<IDamageable>();
     }
+
     public void Damage(float damage, DamType DamType = null)
     {
         if (health <= 0) return;
@@ -47,19 +50,19 @@ public class HitPoint : MonoBehaviour, IDamageable
         //else
         //    damage *= damageMultiplier;
 
-        if (isWeakpoint)
-            damage = DamType != null ? damage *= (damageMultiplier * DamType.weakPointMult) : damage *= damageMultiplier;
+        if (isWeakpoint) // Is this a weak point, if so, check if the damage type can actually hit weakpoints to decide if it should apply the damage type multiplier on top of the existing one or don't modify at all.
+            damage = DamType != null ? damage = DamType.canHitWeakPoints ? damage *= (damageMultiplier * DamType.weakPointMult) : damage : damage *= damageMultiplier;
 
         if (isRemovable)
             health -= damage;
 
         if (parentDamageable != null)
-            parentDamageable.health -= damage;
+            parentDamageable.Damage(damage, DamType);
 
         if (health <= 0 )
         {
             if (parentDamageable != null)
-                parentDamageable.health -= parentDamageable.maxHealth * pctHealthLostOnRemoval;
+                parentDamageable.Damage(parentDamageable.maxHealth * pctHealthLostOnRemoval, DamType);
             if (isObject)
                 Destroy(gameObject);
             else

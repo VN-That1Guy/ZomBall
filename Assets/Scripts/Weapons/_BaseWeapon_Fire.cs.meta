@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: a23e2c85aeafa2a4a8c4e469158135ca
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - <damageType>k__BackingField: {fileID: 11400000, guid: 1973b177bc257634088d065c8084408d, type: 2}
+  - firingPoint: {instanceID: 0}
+  - player: {instanceID: 0}
+  - weapon: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

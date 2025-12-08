@@ -1,17 +1,25 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Pinball_Game : MonoBehaviour
 {
     static public Pinball_Game S;
 
+    [Header("Inscribed")]
     public bool isActive = true;
+    
+    // Pinball machine parts
     [SerializeField] private GameObject launcher;
     [SerializeField] private GameObject plunger;
     [SerializeField] private GameObject flipperLeft;
     [SerializeField] private GameObject flipperRight;
     [SerializeField] private GameObject Pinball;
 
-    public GameObject currPinball { get; private set; }
+    public float pinballRespawnTime = 0f;
+
+    public GameObject currPinball { get; private set; } // Dynamic but is set in the scene to set the pinballRespawnPos
+
+    // Flipper Settings
     private HingeJoint flipperHingeL;
     private HingeJoint flipperHingeR;
     private JointSpring flipperSpringL;
@@ -30,7 +38,15 @@ public class Pinball_Game : MonoBehaviour
 
     private Vector3 pinballRespawnPos;
 
+    public void GoToPinballMachine()
+    {
+        isActive = true;
+    }
 
+    public void GoAwayFromMachine()
+    {
+        isActive = false;
+    }
 
     private void Start()
     {
@@ -53,8 +69,9 @@ public class Pinball_Game : MonoBehaviour
 
         launcherSpring = launcher.GetComponent<Launcher>();
         plungerSpring = plunger.GetComponent<Plunger>();
-
-        currPinball = GameObject.Find("Pinball");
+        
+        // Find the pinball in the scene and set as a respawn point when the scene starts
+        currPinball = GameObject.Find("Pinball"); 
         pinballRespawnPos = currPinball.transform.position;
 
     }
@@ -131,7 +148,7 @@ public class Pinball_Game : MonoBehaviour
 
     public void DelayRespawn()
     {
-        Invoke(nameof(Respawn), 3);
+        Invoke(nameof(Respawn), pinballRespawnTime);
     }
 
     private void Respawn()

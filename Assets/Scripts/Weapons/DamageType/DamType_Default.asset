@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2574e11fb5aef794289c6705b3ea609f, type: 3}
-  m_Name: DamType_Pistol
+  m_Name: DamType_Default
   m_EditorClassIdentifier: 
   canHitWeakPoints: 1
   weakPointMult: 1.1

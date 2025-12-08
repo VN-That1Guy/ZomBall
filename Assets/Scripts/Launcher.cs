@@ -1,16 +1,20 @@
 using UnityEngine;
 
+// A GameObject component made to launch pinballs. Unlike several Unity tutorials I've watched, this one actually utilizes rigidbody collisions/force,
+// whereas the the tutorials used UI and script to add force artificially to the pinball.
 public class Launcher : MonoBehaviour
 {
-    protected Vector3 restPos;
-    protected Vector3 launchPos;
+    protected Vector3 restPos; // Set in the Start method, 
+    protected Vector3 launchPos; // Position of the launcher when the player lets go of it
 
-    protected float launcherPullPower = 0.25f;
-    protected float launcherPower = 2000f;
+    protected float launcherPullPower = 0.25f; // How fast should the launcher pull
+    protected float launcherPower = 2000f; // How fast should the launcher go back to it's rest position, launching the pinball
+    
+    // Values for storing time and calculating time
     protected float letGoTime;
     protected float letGoCurrTime;
 
-    protected bool reachMaxDist = false;
+    protected bool reachMaxDist = false; // The max distance distance of this is set in scene via trigger volume with a tag (See OnTrigger methods).
     protected bool letGo = false;
 
     private Rigidbody rb;
@@ -78,7 +82,6 @@ public class Launcher : MonoBehaviour
 
     virtual public void LetGo()
     {
-        //transform.Translate(0, (-1 * Time.deltaTime) * launcherPullPower, 0, Space.Self);
         letGo = true;
         launchPos = this.transform.position;
         letGoTime = Time.time;

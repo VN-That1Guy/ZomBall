@@ -4,7 +4,7 @@ public class Trigger_RemovePinball : Trigger
 {
     override protected void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Pinball"))
+        if (collision.gameObject.CompareTag("Pinball")) // Pinball has entered this trigger, delete it!
         {
             Destroy(collision.gameObject);
             Zomball_GameManager.LoseLife();

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _score: 10
-  force: 10
+  force: 5
 --- !u!1 &6291842456929434963
 GameObject:
   m_ObjectHideFlags: 0

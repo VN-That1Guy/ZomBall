@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7840012211195909540}
   - component: {fileID: 7730532919647068632}
   - component: {fileID: 9097683084890173257}
-  - component: {fileID: 7531705822233609631}
   - component: {fileID: 3813041758531543425}
-  m_Layer: 0
+  - component: {fileID: 5866857388390516358}
+  m_Layer: 6
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,8 +88,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7531705822233609631
-MeshCollider:
+--- !u!114 &3813041758531543425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126437201560127461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4625a7134f2c07a42ba1b4a82874f744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <maxHealth>k__BackingField: 35
+  isWeakpoint: 1
+  damageMultiplier: 1.1
+  pctHealthLostOnRemoval: 0.5
+  isRemovable: 1
+  isObject: 1
+  hitParentObject: {fileID: 0}
+  <health>k__BackingField: 0
+--- !u!136 &5866857388390516358
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,30 +126,11 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &3813041758531543425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126437201560127461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4625a7134f2c07a42ba1b4a82874f744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <maxHealth>k__BackingField: 50
-  isWeakpoint: 1
-  damageMultiplier: 1.1
-  pctHealthLostOnRemoval: 0.5
-  isRemovable: 1
-  isObject: 1
-  hitParentObject: {fileID: 0}
-  <health>k__BackingField: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3.25
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2292298854929726669
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +144,7 @@ GameObject:
   - component: {fileID: 7375972057300879438}
   - component: {fileID: 1574547274172061814}
   - component: {fileID: 473989026170476796}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +275,7 @@ GameObject:
   - component: {fileID: 4718745786824336521}
   - component: {fileID: 7959239356718838734}
   - component: {fileID: 2511378844948557525}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +408,7 @@ GameObject:
   - component: {fileID: 8684858441031586123}
   - component: {fileID: 4381103442057700404}
   - component: {fileID: 5727551223695989431}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,14 +446,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <maxHealth>k__BackingField: 100
-  head: {fileID: 0}
-  speed: 0
+  head: {fileID: 126437201560127461}
+  speed: 1.5
   defaultMaxDotCount: 5
+  initialTarget: {fileID: 0}
+  <health>k__BackingField: 0
+  state: 0
   dotActive: 0
   dotInterval: 1
   dotCount: 0
   maxDotCount: 0
   isHeadGone: 0
+  agent: {fileID: 0}
+  Target: {fileID: 0}
+  destinationPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &2887291564701358111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,7 +560,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6733722868441810074}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.24
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -562,7 +569,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 0.1
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

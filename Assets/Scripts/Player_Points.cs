@@ -1,4 +1,4 @@
-
+// Player_Points - Stores and handle the player currency
 
 public class Player_Points
 {
